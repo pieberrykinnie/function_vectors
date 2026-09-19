@@ -1,0 +1,45 @@
+[project]
+name = "function-vectors"
+version = "0.1.0"
+description = "Function Vectors in Large Language Models"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    # PyTorch: fv_environment.yml specifies pytorch=1.13.0, but commit 06c0063
+    # updated transformers to 4.49.0 and bitsandbytes to 0.45.3 (which requires torch>=2.0.0
+    # for torch._inductor). Setting torch>=1.13.0 allows uv to resolve a compatible torch (2.x).
+    "torch>=1.13.0",
+    "accelerate==0.21.0",
+    "bitsandbytes==0.45.3",
+    "datasets==2.14.3",
+    "huggingface-hub==0.29.3",
+    "jupyter==1.0.0",
+    "matplotlib==3.7.1",
+    "numpy==1.25.0",
+    "pandas==1.5.3",
+    "plotly==5.9.0",
+    "scikit-learn==1.3.0",
+    "seaborn==0.12.2",
+    "sentencepiece==0.1.99",
+    "tqdm==4.65.0",
+    "transformers==4.49.0",
+    "baukit",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+baukit = { git = "https://github.com/davidbau/baukit.git", branch = "main" }
+
+# Optional: To install PyTorch with GPU / CUDA acceleration on Windows or Linux,
+# uncomment the index and source configuration below, or pass --extra-index-url to uv:
+#
+# [[tool.uv.index]]
+# name = "pytorch-cu121"
+# url = "https://download.pytorch.org/whl/cu121"
+# explicit = true
+#
+# [tool.uv.sources]
+# torch = { index = "pytorch-cu121" }
+# torchvision = { index = "pytorch-cu121" }
